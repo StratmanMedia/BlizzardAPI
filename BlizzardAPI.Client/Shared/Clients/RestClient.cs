@@ -13,7 +13,7 @@ namespace BlizzardAPI.Client.Shared.Clients
 
         internal RestClient(RestClientSettings settings)
         {
-            if (string.IsNullOrEmpty(settings.Token.AccessToken)) throw new ArgumentException("Token does not exist.");
+            if (string.IsNullOrWhiteSpace(settings.Token.AccessToken)) throw new ArgumentException("Token does not exist.");
 
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {settings.Token.AccessToken}");
