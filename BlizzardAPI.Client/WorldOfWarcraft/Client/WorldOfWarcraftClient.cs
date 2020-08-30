@@ -22,13 +22,16 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
         public WorldOfWarcraftClient(WorldOfWarcraftClientSettings settings)
         {
             _clientSettings = settings;
-            _tokenClient = new TokenClient(new TokenClientSettings
+            if (settings.Token == null)
             {
-                ClientId = _clientSettings.ClientId,
-                ClientSecret = _clientSettings.ClientSecret,
-                Scope = "wow.profile"
-            });
-            _clientSettings.Token = _tokenClient.GetClientCredentialsTokenAsync().GetAwaiter().GetResult();
+                _tokenClient = new TokenClient(new TokenClientSettings
+                {
+                    ClientId = _clientSettings.ClientId,
+                    ClientSecret = _clientSettings.ClientSecret,
+                    Scope = "wow.profile"
+                });
+                _clientSettings.Token = _tokenClient.GetClientCredentialsTokenAsync().GetAwaiter().GetResult();
+            }
             _restClient = new RestClient(new RestClientSettings
             {
                 Token = _clientSettings.Token,
