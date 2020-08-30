@@ -16,7 +16,14 @@ namespace BlizzardAPI.Client.BattleNet.Clients
 
         internal TokenClient(TokenClientSettings settings)
         {
-            _clientSettings = settings;
+            _clientSettings = settings ?? throw new ArgumentException("TokenClient settings must be provided.");
+            if (string.IsNullOrWhiteSpace(_clientSettings.ClientId) || string.IsNullOrWhiteSpace(_clientSettings.ClientSecret))
+                throw new ArgumentException("Client ID and Client Secret must be provided.");
+            if (string.IsNullOrWhiteSpace(_clientSettings.Scope))
+                throw new ArgumentException("Scope must be provided.");
+            if (string.IsNullOrWhiteSpace(_clientSettings.Region))
+                throw new ArgumentException("Region must be provided.");
+
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                 "Basic", Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{_clientSettings.ClientId}:{_clientSettings.ClientSecret}")));
@@ -50,7 +57,7 @@ namespace BlizzardAPI.Client.BattleNet.Clients
 
         private async Task<BattleNetToken> SendTokenRequest(FormUrlEncodedContent body)
         {
-            var response = await _http.PostAsync("https://us.battle.net/oauth/token", body);
+            var response = await _http.PostAsync($"https://{_clientSettings.Region}.battle.net/oauth/token", body);
 
             if (!response.IsSuccessStatusCode) return null;
 

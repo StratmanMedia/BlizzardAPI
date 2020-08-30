@@ -8,6 +8,6 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client.Models
         public string ClientSecret { get; set; }
         public string Region { get; set; }
         public string Locale { get; set; }
-        internal BattleNetToken Token { get; set; }
+        public BattleNetToken Token { get; set; }
     }
 }

@@ -7,5 +7,6 @@
         public string AuthCode { get; set; }
         public string RedirectUri { get; set; }
         public string Scope { get; set; }
+        public string Region { get; set; }
     }
 }
