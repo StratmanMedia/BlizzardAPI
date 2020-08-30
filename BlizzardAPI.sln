@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B05FC217-1D96-49D4-BBF6-BAEC67922060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlizzardAPI.Client", "BlizzardAPI.Client\BlizzardAPI.Client.csproj", "{FD363593-586A-485C-B0B9-878B9AD1D182}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlizzardAPI.Client.Tests", "BlizzardAPI.Client.Tests\BlizzardAPI.Client.Tests.csproj", "{CBE20FEB-DE65-4843-A659-C46B423E9B94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD363593-586A-485C-B0B9-878B9AD1D182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD363593-586A-485C-B0B9-878B9AD1D182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD363593-586A-485C-B0B9-878B9AD1D182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD363593-586A-485C-B0B9-878B9AD1D182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE20FEB-DE65-4843-A659-C46B423E9B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE20FEB-DE65-4843-A659-C46B423E9B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE20FEB-DE65-4843-A659-C46B423E9B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE20FEB-DE65-4843-A659-C46B423E9B94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CBE20FEB-DE65-4843-A659-C46B423E9B94} = {B05FC217-1D96-49D4-BBF6-BAEC67922060}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FA1F10D-D29F-4926-ABE6-42ED2487395E}
+	EndGlobalSection
+EndGlobal
