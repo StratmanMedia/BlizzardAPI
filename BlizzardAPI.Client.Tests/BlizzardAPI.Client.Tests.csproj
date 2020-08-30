@@ -24,8 +24,4 @@
     <ProjectReference Include="..\BlizzardAPI.Client\BlizzardAPI.Client.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BattleNet\Clients\" />
-  </ItemGroup>
-
 </Project>

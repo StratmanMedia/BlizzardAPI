@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BlizzardAPI.Client.BattleNet.Clients;
 using BlizzardAPI.Client.BattleNet.Model;
 using BlizzardAPI.Client.Shared.Clients;
 using BlizzardAPI.Client.Shared.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Characters.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Client.Models;
-using BlizzardAPI.Client.WorldOfWarcraft.Realms;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Client
@@ -21,14 +21,22 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
 
         public WorldOfWarcraftClient(WorldOfWarcraftClientSettings settings)
         {
-            _clientSettings = settings;
+            _clientSettings = settings ?? throw new ArgumentException("WorldOfWarcraftClient settings must be provided.");
+            if ((string.IsNullOrWhiteSpace(_clientSettings.ClientId) || string.IsNullOrWhiteSpace(_clientSettings.ClientSecret)) && _clientSettings.Token == null)
+                throw new ArgumentException("Either the Client ID/Client Secret or the BattleNetToken must be provided.");
+            if (string.IsNullOrWhiteSpace(_clientSettings.Locale))
+                throw new ArgumentException("Locale must be provided.");
+            if (string.IsNullOrWhiteSpace(_clientSettings.Region))
+                throw new ArgumentException("Region must be provided.");
+
             if (settings.Token == null)
             {
                 _tokenClient = new TokenClient(new TokenClientSettings
                 {
                     ClientId = _clientSettings.ClientId,
                     ClientSecret = _clientSettings.ClientSecret,
-                    Scope = "wow.profile"
+                    Scope = "wow.profile",
+                    Region = _clientSettings.Region
                 });
                 _clientSettings.Token = _tokenClient.GetClientCredentialsTokenAsync().GetAwaiter().GetResult();
             }
@@ -74,9 +82,9 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
                 _parent = parent;
             }
 
-            public async Task<Realm> GetRealmAsync(string realmName)
+            public async Task<Realm> GetRealmAsync(string realmSlug)
             {
-                var uri = $"{_parent._apiBaseUrl}/data/wow/realm/{realmName}?namespace=dynamic-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
+                var uri = $"{_parent._apiBaseUrl}/data/wow/realm/{realmSlug}?namespace=dynamic-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
                 var realm = await _parent._restClient.GetAsync<Realm>(uri);
                 return realm;
             }
