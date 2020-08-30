@@ -17,7 +17,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
         private readonly RestClient _restClient;
         private readonly string _apiBaseUrl;
         public CharactersClient Characters;
-        public PublicRealmsClient Realms;
+        public RealmsClient Realms;
 
         public WorldOfWarcraftClient(WorldOfWarcraftClientSettings settings)
         {
@@ -35,7 +35,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
             });
             _apiBaseUrl = $"https://{_clientSettings.Region}.api.blizzard.com";
             Characters = new CharactersClient(this);
-            Realms = new PublicRealmsClient(this);
+            Realms = new RealmsClient(this);
         }
 
         public class CharactersClient
@@ -62,25 +62,20 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
             }
         }
 
-        public class PublicRealmsClient
+        public class RealmsClient
         {
             private readonly WorldOfWarcraftClient _parent;
-            private readonly RealmsClient _realmsClient;
 
-            public PublicRealmsClient(WorldOfWarcraftClient parent)
+            public RealmsClient(WorldOfWarcraftClient parent)
             {
                 _parent = parent;
-                _realmsClient = new RealmsClient(new RealmsClientSettings
-                {
-                    Token = _parent._clientSettings.Token,
-                    Region = _parent._clientSettings.Region,
-                    Locale = _parent._clientSettings.Locale
-                });
             }
 
             public async Task<Realm> GetRealmAsync(string realmName)
             {
-                return await _realmsClient.GetRealmAsync(realmName);
+                var uri = $"{_parent._apiBaseUrl}/data/wow/realm/{realmName}?namespace=dynamic-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
+                var realm = await _parent._restClient.GetAsync<Realm>(uri);
+                return realm;
             }
         }
     }
