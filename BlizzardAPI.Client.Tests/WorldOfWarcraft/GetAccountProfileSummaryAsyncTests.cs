@@ -17,7 +17,7 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Region = "us",
                 Locale = "en_US"
             });
-            var profile = wowClient.Accounts.GetAccountProfileSummaryAsync("USN5wAdebpB8KOgXj3r1pvCnA4BATO7yGY").GetAwaiter().GetResult();
+            var profile = wowClient.Accounts.GetAccountProfileSummaryAsync(Config["AccessToken"]).GetAwaiter().GetResult();
             Assert.AreEqual(profile.Id, 523559);
         }
     }
