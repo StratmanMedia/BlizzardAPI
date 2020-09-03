@@ -34,9 +34,9 @@ namespace BlizzardAPI.Client.BattleNet.Clients
             return token;
         }
 
-        public async Task<BattleNetToken> UserAccessTokenRequest()
+        public async Task<BattleNetToken> UserAccessTokenRequest(string authCode, string redirectUri)
         {
-            var token = await _tokenClient.GetAccessTokenAsync(_clientSettings.AuthCode, _clientSettings.RedirectUri);
+            var token = await _tokenClient.GetAccessTokenAsync(authCode, redirectUri);
             return token;
         }
     }

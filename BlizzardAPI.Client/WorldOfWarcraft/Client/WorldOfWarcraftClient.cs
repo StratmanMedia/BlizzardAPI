@@ -7,6 +7,7 @@ using BlizzardAPI.Client.Shared.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Characters.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Client.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.User.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Client
 {
@@ -16,6 +17,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
         private readonly TokenClient _tokenClient;
         private readonly RestClient _restClient;
         private readonly string _apiBaseUrl;
+        public AccountClient Accounts;
         public CharactersClient Characters;
         public RealmsClient Realms;
 
@@ -45,8 +47,26 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
                 Token = _clientSettings.Token,
             });
             _apiBaseUrl = $"https://{_clientSettings.Region}.api.blizzard.com";
+            Accounts = new AccountClient(this);
             Characters = new CharactersClient(this);
             Realms = new RealmsClient(this);
+        }
+
+        public class AccountClient
+        {
+            private readonly WorldOfWarcraftClient _parent;
+
+            public AccountClient(WorldOfWarcraftClient parent)
+            {
+                _parent = parent;
+            }
+
+            public async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
+            {
+                var uri = $"{_parent._apiBaseUrl}/profile/user/wow?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}&access_token={accessToken}";
+                var profile = await _parent._restClient.GetAsync<AccountProfile>(uri);
+                return profile;
+            }
         }
 
         public class CharactersClient
@@ -65,9 +85,9 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
                 return character;
             }
 
-            public async Task<Character> GetProtectedCharacterProfileSummaryAsync(string realmId, string characterId)
+            public async Task<Character> GetProtectedCharacterProfileSummaryAsync(string realmId, string characterId, string accessToken)
             {
-                var uri = $"{_parent._apiBaseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
+                var uri = $"{_parent._apiBaseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}&access_token={accessToken}";
                 var character = await _parent._restClient.GetAsync<Character>(uri);
                 return character;
             }

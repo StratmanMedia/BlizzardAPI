@@ -71,6 +71,8 @@ namespace BlizzardAPI.Client.BattleNet.Clients
                 Formatting = Formatting.Indented
             };
             var token = JsonConvert.DeserializeObject<BattleNetToken>(json, jsonSettings);
+            //todo: add expire datetime to token
+            //var expires = DateTime.Now.AddMilliseconds(token.ExpiresIn);
             return token;
         }
     }
