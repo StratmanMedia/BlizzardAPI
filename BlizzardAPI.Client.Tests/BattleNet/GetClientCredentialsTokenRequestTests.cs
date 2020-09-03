@@ -1,7 +1,7 @@
 ﻿using BlizzardAPI.Client.BattleNet.Clients;
 using BlizzardAPI.Client.BattleNet.Model;
-using BlizzardAPI.Client.WorldOfWarcraft.Client;
-using BlizzardAPI.Client.WorldOfWarcraft.Client.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BlizzardAPI.Client.Tests.BattleNet

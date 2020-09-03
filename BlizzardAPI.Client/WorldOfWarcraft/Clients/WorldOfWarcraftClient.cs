@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using BlizzardAPI.Client.BattleNet.Clients;
 using BlizzardAPI.Client.BattleNet.Model;
 using BlizzardAPI.Client.Shared.Clients;
-using BlizzardAPI.Client.Shared.Models;
+using BlizzardAPI.Client.Shared.Services;
 using BlizzardAPI.Client.WorldOfWarcraft.Characters.Models;
-using BlizzardAPI.Client.WorldOfWarcraft.Client.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.User.Models;
 
-namespace BlizzardAPI.Client.WorldOfWarcraft.Client
+namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 {
     public class WorldOfWarcraftClient
     {
@@ -42,30 +42,21 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Client
                 });
                 _clientSettings.Token = _tokenClient.GetClientCredentialsTokenAsync().GetAwaiter().GetResult();
             }
-            _restClient = new RestClient(new RestClientSettings
-            {
-                Token = _clientSettings.Token,
-            });
             _apiBaseUrl = $"https://{_clientSettings.Region}.api.blizzard.com";
-            Accounts = new AccountClient(this);
+            ConfigurationService.StoreSettings(_clientSettings, _apiBaseUrl);
+            _restClient = new RestClient();
+            Accounts = new AccountClient();
             Characters = new CharactersClient(this);
             Realms = new RealmsClient(this);
         }
 
         public class AccountClient
         {
-            private readonly WorldOfWarcraftClient _parent;
-
-            public AccountClient(WorldOfWarcraftClient parent)
-            {
-                _parent = parent;
-            }
+            private readonly InternalAccountProfileClient _internalClient = new InternalAccountProfileClient();
 
             public async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
             {
-                var uri = $"{_parent._apiBaseUrl}/profile/user/wow?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}&access_token={accessToken}";
-                var profile = await _parent._restClient.GetAsync<AccountProfile>(uri);
-                return profile;
+                return await _internalClient.GetAccountProfileSummaryAsync(accessToken);
             }
         }
 

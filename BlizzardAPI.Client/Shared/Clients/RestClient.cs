@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BlizzardAPI.Client.Shared.Models;
+using System.Web;
+using BlizzardAPI.Client.Shared.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -11,16 +12,20 @@ namespace BlizzardAPI.Client.Shared.Clients
     {
         private readonly HttpClient _httpClient;
 
-        internal RestClient(RestClientSettings settings)
+        internal RestClient()
         {
-            if (string.IsNullOrWhiteSpace(settings.Token.AccessToken)) throw new ArgumentException("Token does not exist.");
-
+            if (string.IsNullOrWhiteSpace(ConfigurationService.GetBattleNetToken().AccessToken)) throw new ArgumentException("Token does not exist.");
+            
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {settings.Token.AccessToken}");
         }
 
         internal async Task<T> GetAsync<T>(string uri)
         {
+            var queryDictionary = HttpUtility.ParseQueryString(uri);
+            if (queryDictionary["access_token"] == null)
+            {
+                uri = $"{uri}&access_token={ConfigurationService.GetBattleNetToken().AccessToken}";
+            }
             var response = await _httpClient.GetAsync(uri);
             var json = await response.Content.ReadAsStringAsync();
             var jsonSettings = new JsonSerializerSettings

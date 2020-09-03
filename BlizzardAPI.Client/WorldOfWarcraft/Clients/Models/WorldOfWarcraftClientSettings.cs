@@ -1,6 +1,6 @@
 ﻿using BlizzardAPI.Client.BattleNet.Model;
 
-namespace BlizzardAPI.Client.WorldOfWarcraft.Client.Models
+namespace BlizzardAPI.Client.WorldOfWarcraft.Clients.Models
 {
     public class WorldOfWarcraftClientSettings
     {

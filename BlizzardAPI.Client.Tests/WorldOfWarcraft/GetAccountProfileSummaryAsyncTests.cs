@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 {
     [TestClass]
-    public class GetCharacterProfileSummaryAsyncTests : BaseTest
+    public class GetAccountProfileSummaryAsyncTests : BaseTest
     {
         [TestMethod]
         public void ShouldPass()
@@ -17,8 +17,8 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Region = "us",
                 Locale = "en_US"
             });
-            var character = wowClient.Characters.GetCharacterProfileSummaryAsync("stormrage", "maestero").GetAwaiter().GetResult();
-            Assert.AreEqual(character.Name, "Maestero");
+            var profile = wowClient.Accounts.GetAccountProfileSummaryAsync("USN5wAdebpB8KOgXj3r1pvCnA4BATO7yGY").GetAwaiter().GetResult();
+            Assert.AreEqual(profile.Id, 523559);
         }
     }
 }
