@@ -6,6 +6,7 @@ using BlizzardAPI.Client.Shared.Clients;
 using BlizzardAPI.Client.Shared.Services;
 using BlizzardAPI.Client.WorldOfWarcraft.Characters.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Guilds.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.User.Models;
 
@@ -19,6 +20,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         private readonly string _apiBaseUrl;
         public AccountClient Accounts;
         public CharactersClient Characters;
+        public GuildsClient Guilds;
         public RealmsClient Realms;
 
         public WorldOfWarcraftClient(WorldOfWarcraftClientSettings settings)
@@ -47,6 +49,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             _restClient = new RestClient();
             Accounts = new AccountClient();
             Characters = new CharactersClient(this);
+            Guilds = new GuildsClient();
             Realms = new RealmsClient(this);
         }
 
@@ -81,6 +84,16 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
                 var uri = $"{_parent._apiBaseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}&access_token={accessToken}";
                 var character = await _parent._restClient.GetAsync<Character>(uri);
                 return character;
+            }
+        }
+
+        public class GuildsClient
+        {
+            private readonly InternalGuildClient _internalClient = new InternalGuildClient();
+
+            public async Task<Guild> GetGuildAsync(string realmSlug, string guildSlug)
+            {
+                return await _internalClient.GetGuildAsync(realmSlug, guildSlug);
             }
         }
 
