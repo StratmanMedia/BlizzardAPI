@@ -29,15 +29,7 @@ namespace BlizzardAPI.Client.Shared.Clients
             }
             var response = await _httpClient.GetAsync(uri);
             var json = await response.Content.ReadAsStringAsync();
-            var jsonSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategy { ProcessDictionaryKeys = true }
-                },
-                Formatting = Formatting.Indented
-            };
-            var model = JsonConvert.DeserializeObject<T>(json, jsonSettings);
+            var model = JsonConvert.DeserializeObject<T>(json);
             return model;
         }
 

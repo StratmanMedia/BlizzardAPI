@@ -1,4 +1,5 @@
-﻿using BlizzardAPI.Client.WorldOfWarcraft.Shared.Models;
+﻿using System.Linq;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.User.Models
 {
@@ -6,6 +7,11 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.User.Models
     {
         public long Id { get; set; }
         public WowAccount[] WowAccounts { get; set; }
-        public Resource Collections { get; set; }
+
+        public AccountProfile(AccountProfileSummaryApiResponse response)
+        {
+            Id = response.id;
+            WowAccounts = response.wow_accounts.Select(a => new WowAccount(a)).ToArray();
+        }
     }
 }

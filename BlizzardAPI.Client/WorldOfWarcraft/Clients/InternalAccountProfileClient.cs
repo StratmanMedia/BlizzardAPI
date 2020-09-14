@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BlizzardAPI.Client.Shared.Clients;
 using BlizzardAPI.Client.Shared.Services;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.User.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
@@ -22,7 +23,8 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         {
             var uri = $"{_baseUrl}/profile/user/wow?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
             var restClient = new RestClient();
-            var profile = await restClient.GetAsync<AccountProfile>(uri);
+            var response = await restClient.GetAsync<AccountProfileSummaryApiResponse>(uri);
+            var profile = new AccountProfile(response);
             return profile;
         }
     }

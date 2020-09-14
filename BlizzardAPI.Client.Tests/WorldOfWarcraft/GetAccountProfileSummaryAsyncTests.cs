@@ -1,4 +1,6 @@
-﻿using BlizzardAPI.Client.WorldOfWarcraft.Clients;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients;
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,7 +20,14 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Locale = "en_US"
             });
             var profile = wowClient.Accounts.GetAccountProfileSummaryAsync(Config["AccessToken"]).GetAwaiter().GetResult();
-            Assert.AreEqual(profile.Id, 523559);
+
+            var assertions = new List<bool>
+            {
+                profile.Id == 523559,
+                profile.WowAccounts.Any(),
+                profile.WowAccounts.Any(a => a.Characters.Any())
+            };
+            Assert.IsTrue(assertions.All(a => a));
         }
     }
 }

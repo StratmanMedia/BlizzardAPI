@@ -1,11 +1,13 @@
-﻿using BlizzardAPI.Client.WorldOfWarcraft.Clients;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients;
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 {
     [TestClass]
-    public class GetRealmAsyncTest : BaseTest
+    public class GetRealmAsyncTests : BaseTest
     {
         [TestMethod]
         public void ShouldPass()
@@ -18,7 +20,14 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Locale = "en_US"
             });
             var realm = wowClient.Realms.GetRealmAsync("stormrage").GetAwaiter().GetResult();
-            Assert.AreEqual(realm.Slug, "stormrage");
+
+            var assertions = new List<bool>
+            {
+                realm.Id == 60,
+                realm.Name == "Stormrage",
+                realm.Slug == "stormrage"
+            };
+            Assert.IsTrue(assertions.All(a => a));
         }
     }
 }

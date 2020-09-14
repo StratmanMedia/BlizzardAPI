@@ -1,7 +1,8 @@
 ﻿using System;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Guilds.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
-using BlizzardAPI.Client.WorldOfWarcraft.Shared.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Shared.Extensions;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
 {
@@ -9,11 +10,11 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public Gender Gender { get; set; }
-        public Faction Faction { get; set; }
-        public Race Race { get; set; }
-        public CharacterClass CharacterClass { get; set; }
-        public Specialization ActiveSpec { get; set; }
+        public string Gender { get; set; }
+        public string Faction { get; set; }
+        public string Race { get; set; }
+        public PlayableClass PlayableClass { get; set; }
+        public Specialization ActiveSpecialization { get; set; }
         public Realm Realm { get; set; }
         public Guild Guild { get; set; }
         public int Level { get; set; }
@@ -44,5 +45,76 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
         public Position Position { get; set; }
         public Position BindPosition { get; set; }
         public long WowAccount { get; set; }
+
+        public Character(CharacterProfileSummaryApiResponse response)
+        {
+            Id = response.id;
+            Name = response.name;
+            Gender = response.gender.type;
+            Faction = response.faction.type;
+            Race = response.race.name;
+            PlayableClass = new PlayableClass
+            {
+                Id = response.character_class.id,
+                Name = response.character_class.name
+            };
+            ActiveSpecialization = new Specialization
+            {
+                Id = response.active_spec.id,
+                Name = response.active_spec.name
+            };
+            Realm = new Realm
+            {
+                Id = response.realm.id,
+                Name = response.realm.name,
+                Slug = response.realm.slug
+            };
+            Guild = new Guild
+            {
+                Id = response.guild.id,
+                Name = response.guild.name,
+                Slug = response.guild.key.href.ParseGuildSlug(),
+                Realm = new Realm
+                {
+                    Id = response.guild.realm.id,
+                    Name = response.guild.realm.name,
+                    Slug = response.guild.realm.slug
+                },
+                Faction = response.faction.type
+            };
+            Level = response.level;
+            Experience = response.experience;
+            AchievementPoints = response.achievement_points;
+            LastLoginTimestamp = response.last_login_timestamp;
+            AverageItemLevel = response.average_item_level;
+            EquippedItemLevel = response.equipped_item_level;
+            ActiveTitle = new Title
+            {
+                Id = response.active_title.id,
+                Name = response.active_title.name,
+                DisplayString = response.active_title.display_string
+            };
+        }
+
+        public Character(AccountProfileSummaryApiResponse.Character response)
+        {
+            Id = response.id;
+            Name = response.name;
+            Realm = new Realm
+            {
+                Id = response.realm.id,
+                Name = response.realm.name,
+                Slug = response.realm.slug
+            };
+            PlayableClass = new PlayableClass
+            {
+                Id = response.playable_class.id,
+                Name = response.playable_class.name
+            };
+            Race = response.playable_race.name;
+            Gender = response.gender.type;
+            Faction = response.faction.type;
+            Level = response.level;
+        }
     }
 }

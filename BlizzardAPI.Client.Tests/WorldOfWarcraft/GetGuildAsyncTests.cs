@@ -1,4 +1,6 @@
-﻿using BlizzardAPI.Client.WorldOfWarcraft.Clients;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients;
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,7 +20,16 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Locale = "en_US"
             });
             var guild = wowClient.Guilds.GetGuildAsync("stormrage", "timeless-endeavour").GetAwaiter().GetResult();
-            Assert.IsTrue(guild.Name == "timeless endeavour" && guild.Slug == "timeless-endeavour");
+
+            var assertions = new List<bool>
+            {
+                guild.Id == 58564441,
+                guild.Name == "timeless endeavour",
+                guild.Slug == "timeless-endeavour",
+                guild.Realm.Slug == "stormrage",
+                guild.Faction == "ALLIANCE"
+            };
+            Assert.IsTrue(assertions.All(a => a));
         }
     }
 }

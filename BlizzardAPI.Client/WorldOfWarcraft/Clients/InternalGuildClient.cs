@@ -7,7 +7,6 @@ using BlizzardAPI.Client.WorldOfWarcraft.Guilds.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Shared.Extensions;
 using BlizzardAPI.Client.WorldOfWarcraft.Shared.Models;
-using Newtonsoft.Json.Linq;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 {
@@ -43,11 +42,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
                     Name = response.realm.name,
                     Slug = response.realm.slug
                 },
-                Faction = new Faction
-                {
-                    Type = response.faction.type,
-                    Name = response.faction.name
-                },
+                Faction = response.faction.type,
                 AchievementPoints = response.achievement_points,
                 MemberCount = response.member_count,
                 CreatedTimestamp = response.created_timestamp

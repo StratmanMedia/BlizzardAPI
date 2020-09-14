@@ -48,7 +48,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             ConfigurationService.StoreSettings(_clientSettings, _apiBaseUrl);
             _restClient = new RestClient();
             Accounts = new AccountClient();
-            Characters = new CharactersClient(this);
+            Characters = new CharactersClient();
             Guilds = new GuildsClient();
             Realms = new RealmsClient(this);
         }
@@ -65,25 +65,16 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 
         public class CharactersClient
         {
-            private readonly WorldOfWarcraftClient _parent;
-
-            public CharactersClient(WorldOfWarcraftClient parent)
-            {
-                _parent = parent;
-            }
+            private readonly InternalCharacterClient _internalClient = new InternalCharacterClient();
 
             public async Task<Character> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
             {
-                var uri = $"{_parent._apiBaseUrl}/profile/wow/character/{realmSlug}/{characterName}?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
-                var character = await _parent._restClient.GetAsync<Character>(uri);
-                return character;
+                return await _internalClient.GetCharacterProfileSummaryAsync(realmSlug, characterName);
             }
 
             public async Task<Character> GetProtectedCharacterProfileSummaryAsync(string realmId, string characterId, string accessToken)
             {
-                var uri = $"{_parent._apiBaseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}&access_token={accessToken}";
-                var character = await _parent._restClient.GetAsync<Character>(uri);
-                return character;
+                return await _internalClient.GetProtectedCharacterProfileSummaryAsync(realmId, characterId, accessToken);
             }
         }
 

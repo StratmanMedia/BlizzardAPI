@@ -1,6 +1,6 @@
 ﻿namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
 {
-    public class CharacterClass
+    public class PlayableClass
     {
         public int Id { get; set; }
         public string Name { get; set; }
