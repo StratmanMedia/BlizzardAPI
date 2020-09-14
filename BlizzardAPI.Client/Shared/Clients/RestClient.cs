@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using BlizzardAPI.Client.Shared.Services;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
 namespace BlizzardAPI.Client.Shared.Clients
@@ -37,6 +38,19 @@ namespace BlizzardAPI.Client.Shared.Clients
                 Formatting = Formatting.Indented
             };
             var model = JsonConvert.DeserializeObject<T>(json, jsonSettings);
+            return model;
+        }
+
+        internal async Task<JObject> GetAsync(string uri)
+        {
+            var queryDictionary = HttpUtility.ParseQueryString(uri);
+            if (queryDictionary["access_token"] == null)
+            {
+                uri = $"{uri}&access_token={ConfigurationService.GetBattleNetToken().AccessToken}";
+            }
+            var response = await _httpClient.GetAsync(uri);
+            var json = await response.Content.ReadAsStringAsync();
+            var model = JObject.Parse(json);
             return model;
         }
     }

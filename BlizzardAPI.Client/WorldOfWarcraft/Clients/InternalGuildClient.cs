@@ -2,7 +2,12 @@
 using BlizzardAPI.Client.BattleNet.Model;
 using BlizzardAPI.Client.Shared.Clients;
 using BlizzardAPI.Client.Shared.Services;
+using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Guilds.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
+using BlizzardAPI.Client.WorldOfWarcraft.Shared.Extensions;
+using BlizzardAPI.Client.WorldOfWarcraft.Shared.Models;
+using Newtonsoft.Json.Linq;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 {
@@ -25,7 +30,28 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         {
             var uri = $"{_baseUrl}/data/wow/guild/{realmSlug}/{guildSlug}?namespace=profile-{_region}&locale={_locale}&access_token={_token.AccessToken}";
             var restClient = new RestClient();
-            var guild = await restClient.GetAsync<Guild>(uri);
+            var response = await restClient.GetAsync<GuildApiResponse>(uri);
+            var slug = response._links.self.href.ParseGuildSlug();
+            var guild = new Guild
+            {
+                Id = response.id,
+                Name = response.name,
+                Slug = slug,
+                Realm = new Realm
+                {
+                    Id = response.realm.id,
+                    Name = response.realm.name,
+                    Slug = response.realm.slug
+                },
+                Faction = new Faction
+                {
+                    Type = response.faction.type,
+                    Name = response.faction.name
+                },
+                AchievementPoints = response.achievement_points,
+                MemberCount = response.member_count,
+                CreatedTimestamp = response.created_timestamp
+            };
             return guild;
         }
     }
