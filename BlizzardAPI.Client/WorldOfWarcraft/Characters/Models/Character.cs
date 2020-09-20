@@ -46,7 +46,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
         public Position BindPosition { get; set; }
         public long WowAccount { get; set; }
 
-        public Character(CharacterProfileSummaryApiResponse response)
+        internal Character(CharacterProfileSummaryApiResponse response)
         {
             Id = response.id;
             Name = response.name;
@@ -96,7 +96,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
             };
         }
 
-        public Character(AccountProfileSummaryApiResponse.Character response)
+        internal Character(AccountProfileSummaryApiResponse.Character response)
         {
             Id = response.id;
             Name = response.name;

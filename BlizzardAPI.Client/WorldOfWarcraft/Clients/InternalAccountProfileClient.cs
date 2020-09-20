@@ -12,14 +12,14 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         private readonly string _region;
         private readonly string _locale;
 
-        public InternalAccountProfileClient()
+        internal InternalAccountProfileClient()
         {
             _baseUrl = ConfigurationService.GetBaseUrl();
             _region = ConfigurationService.GetRegion();
             _locale = ConfigurationService.GetLocale();
         }
 
-        public async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
+        internal async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
         {
             var uri = $"{_baseUrl}/profile/user/wow?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
             var restClient = new RestClient();

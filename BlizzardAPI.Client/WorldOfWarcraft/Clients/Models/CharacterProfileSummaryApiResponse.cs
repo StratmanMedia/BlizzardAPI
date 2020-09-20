@@ -1,230 +1,230 @@
 ﻿namespace BlizzardAPI.Client.WorldOfWarcraft.Clients.Models
 {
-    public class CharacterProfileSummaryApiResponse
+    internal class CharacterProfileSummaryApiResponse
     {
-        public class Self
+        internal class Self
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Links
+        internal class Links
         {
-            public Self self { get; set; }
+            internal Self self { get; set; }
         }
 
-        public class Gender
+        internal class Gender
         {
-            public string type { get; set; }
-            public string name { get; set; }
+            internal string type { get; set; }
+            internal string name { get; set; }
         }
 
-        public class Faction
+        internal class Faction
         {
-            public string type { get; set; }
-            public string name { get; set; }
+            internal string type { get; set; }
+            internal string name { get; set; }
         }
 
-        public class Key
+        internal class Key
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Race
+        internal class Race
         {
-            public Key key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
+            internal Key key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
         }
 
-        public class Key2
+        internal class Key2
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class CharacterClass
+        internal class CharacterClass
         {
-            public Key2 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
+            internal Key2 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
         }
 
-        public class Key3
+        internal class Key3
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class ActiveSpec
+        internal class ActiveSpec
         {
-            public Key3 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
+            internal Key3 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
         }
 
-        public class Key4
+        internal class Key4
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Realm
+        internal class Realm
         {
-            public Key4 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
-            public string slug { get; set; }
+            internal Key4 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
+            internal string slug { get; set; }
         }
 
-        public class Key5
+        internal class Key5
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Key6
+        internal class Key6
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Realm2
+        internal class Realm2
         {
-            public Key6 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
-            public string slug { get; set; }
+            internal Key6 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
+            internal string slug { get; set; }
         }
 
-        public class Faction2
+        internal class Faction2
         {
-            public string type { get; set; }
-            public string name { get; set; }
+            internal string type { get; set; }
+            internal string name { get; set; }
         }
 
-        public class Guild
+        internal class Guild
         {
-            public Key5 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
-            public Realm2 realm { get; set; }
-            public Faction2 faction { get; set; }
+            internal Key5 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
+            internal Realm2 realm { get; set; }
+            internal Faction2 faction { get; set; }
         }
 
-        public class Achievements
+        internal class Achievements
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Titles
+        internal class Titles
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class PvpSummary
+        internal class PvpSummary
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Encounters
+        internal class Encounters
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Media
+        internal class Media
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Specializations
+        internal class Specializations
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Statistics
+        internal class Statistics
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class MythicKeystoneProfile
+        internal class MythicKeystoneProfile
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Equipment
+        internal class Equipment
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Appearance
+        internal class Appearance
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Collections
+        internal class Collections
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Key7
+        internal class Key7
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class ActiveTitle
+        internal class ActiveTitle
         {
-            public Key7 key { get; set; }
-            public string name { get; set; }
-            public int id { get; set; }
-            public string display_string { get; set; }
+            internal Key7 key { get; set; }
+            internal string name { get; set; }
+            internal int id { get; set; }
+            internal string display_string { get; set; }
         }
 
-        public class Reputations
+        internal class Reputations
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Quests
+        internal class Quests
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class AchievementsStatistics
+        internal class AchievementsStatistics
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public class Professions
+        internal class Professions
         {
-            public string href { get; set; }
+            internal string href { get; set; }
         }
 
-        public Links _links { get; set; }
-        public int id { get; set; }
-        public string name { get; set; }
-        public Gender gender { get; set; }
-        public Faction faction { get; set; }
-        public Race race { get; set; }
-        public CharacterClass character_class { get; set; }
-        public ActiveSpec active_spec { get; set; }
-        public Realm realm { get; set; }
-        public Guild guild { get; set; }
-        public int level { get; set; }
-        public int experience { get; set; }
-        public int achievement_points { get; set; }
-        public Achievements achievements { get; set; }
-        public Titles titles { get; set; }
-        public PvpSummary pvp_summary { get; set; }
-        public Encounters encounters { get; set; }
-        public Media media { get; set; }
-        public long last_login_timestamp { get; set; }
-        public int average_item_level { get; set; }
-        public int equipped_item_level { get; set; }
-        public Specializations specializations { get; set; }
-        public Statistics statistics { get; set; }
-        public MythicKeystoneProfile mythic_keystone_profile { get; set; }
-        public Equipment equipment { get; set; }
-        public Appearance appearance { get; set; }
-        public Collections collections { get; set; }
-        public ActiveTitle active_title { get; set; }
-        public Reputations reputations { get; set; }
-        public Quests quests { get; set; }
-        public AchievementsStatistics achievements_statistics { get; set; }
-        public Professions professions { get; set; }
+        internal Links _links { get; set; }
+        internal int id { get; set; }
+        internal string name { get; set; }
+        internal Gender gender { get; set; }
+        internal Faction faction { get; set; }
+        internal Race race { get; set; }
+        internal CharacterClass character_class { get; set; }
+        internal ActiveSpec active_spec { get; set; }
+        internal Realm realm { get; set; }
+        internal Guild guild { get; set; }
+        internal int level { get; set; }
+        internal int experience { get; set; }
+        internal int achievement_points { get; set; }
+        internal Achievements achievements { get; set; }
+        internal Titles titles { get; set; }
+        internal PvpSummary pvp_summary { get; set; }
+        internal Encounters encounters { get; set; }
+        internal Media media { get; set; }
+        internal long last_login_timestamp { get; set; }
+        internal int average_item_level { get; set; }
+        internal int equipped_item_level { get; set; }
+        internal Specializations specializations { get; set; }
+        internal Statistics statistics { get; set; }
+        internal MythicKeystoneProfile mythic_keystone_profile { get; set; }
+        internal Equipment equipment { get; set; }
+        internal Appearance appearance { get; set; }
+        internal Collections collections { get; set; }
+        internal ActiveTitle active_title { get; set; }
+        internal Reputations reputations { get; set; }
+        internal Quests quests { get; set; }
+        internal AchievementsStatistics achievements_statistics { get; set; }
+        internal Professions professions { get; set; }
     }
 }

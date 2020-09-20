@@ -10,7 +10,7 @@ using BlizzardAPI.Client.WorldOfWarcraft.Shared.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 {
-    public class InternalGuildClient
+    internal class InternalGuildClient
     {
         private readonly string _baseUrl;
         private readonly string _region;

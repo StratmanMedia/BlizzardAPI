@@ -8,7 +8,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.User.Models
         public long Id { get; set; }
         public WowAccount[] WowAccounts { get; set; }
 
-        public AccountProfile(AccountProfileSummaryApiResponse response)
+        internal AccountProfile(AccountProfileSummaryApiResponse response)
         {
             Id = response.id;
             WowAccounts = response.wow_accounts.Select(a => new WowAccount(a)).ToArray();
