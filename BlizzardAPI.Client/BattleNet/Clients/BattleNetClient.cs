@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using BlizzardAPI.Client.BattleNet.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace BlizzardAPI.Client.BattleNet.Clients
 {
@@ -8,6 +12,7 @@ namespace BlizzardAPI.Client.BattleNet.Clients
     {
         private readonly BattleNetClientSettings _clientSettings;
         private readonly TokenClient _tokenClient;
+        private readonly HttpClient _http;
 
         public BattleNetClient(BattleNetClientSettings settings)
         {
@@ -26,6 +31,7 @@ namespace BlizzardAPI.Client.BattleNet.Clients
                 Scope = _clientSettings.Scope,
                 Region = _clientSettings.Region
             });
+            _http = new HttpClient();
         }
 
         public async Task<BattleNetToken> ClientCredentialsTokenRequest()
@@ -38,6 +44,25 @@ namespace BlizzardAPI.Client.BattleNet.Clients
         {
             var token = await _tokenClient.GetAccessTokenAsync(authCode, redirectUri);
             return token;
+        }
+
+        public async Task<BattleNetUserInfo> UserInfoRequest(string accessToken)
+        {
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = await _http.GetAsync($"https://{_clientSettings.Region}.battle.net/oauth/userinfo");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var json = await response.Content.ReadAsStringAsync();
+            var jsonSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy { ProcessDictionaryKeys = true }
+                },
+                Formatting = Formatting.Indented
+            };
+            var userInfo = JsonConvert.DeserializeObject<BattleNetUserInfo>(json, jsonSettings);
+            return userInfo;
         }
     }
 }

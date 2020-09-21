@@ -28,7 +28,7 @@ namespace BlizzardAPI.Client.Tests.BattleNet
                 Locale = "en_US"
             });
             var realm = wowClient.Realms.GetRealmAsync("stormrage").GetAwaiter().GetResult();
-            Assert.AreEqual(realm.Slug, "stormrage");
+            Assert.AreEqual(realm.slug, "stormrage");
         }
     }
 }

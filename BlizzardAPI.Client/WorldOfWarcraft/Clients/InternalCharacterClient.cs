@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BlizzardAPI.Client.Shared.Clients;
 using BlizzardAPI.Client.Shared.Services;
-using BlizzardAPI.Client.WorldOfWarcraft.Characters.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
@@ -19,20 +18,19 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             _locale = ConfigurationService.GetLocale();
         }
 
-        internal async Task<Character> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
+        internal async Task<CharacterProfileSummaryApiResponse> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
         {
             var uri = $"{_baseUrl}/profile/wow/character/{realmSlug}/{characterName}?namespace=profile-{_region}&locale={_locale}";
             var restClient = new RestClient();
             var response = await restClient.GetAsync<CharacterProfileSummaryApiResponse>(uri);
-            var character = new Character(response);
-            return character;
+            return response;
         }
 
-        internal async Task<Character> GetProtectedCharacterProfileSummaryAsync(string realmId, string characterId, string accessToken)
+        internal async Task<ProtectedCharacterProfileSummaryApiResponse> GetProtectedCharacterProfileSummaryAsync(int realmId, long characterId, string accessToken)
         {
             var uri = $"{_baseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
             var restClient = new RestClient();
-            var character = await restClient.GetAsync<Character>(uri);
+            var character = await restClient.GetAsync<ProtectedCharacterProfileSummaryApiResponse>(uri);
             return character;
         }
     }

@@ -23,14 +23,13 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 
             var assertions = new List<bool>
             {
-                character.Id == 211745922,
-                character.Name == "Maestero",
-                character.Gender == "MALE",
-                character.Faction == "ALLIANCE",
-                character.Race == "Draenei",
-                character.PlayableClass.Name == "Paladin",
-                character.Realm.Slug == "stormrage",
-                character.Guild.Slug == "timeless-endeavour"
+                character.id == 211745922,
+                character.name == "Maestero",
+                character.gender.type == "MALE",
+                character.faction.type == "ALLIANCE",
+                character.race.name == "Draenei",
+                character.character_class.name == "Paladin",
+                character.realm.slug == "stormrage"
             };
             Assert.IsTrue(assertions.All(a => a));
         }

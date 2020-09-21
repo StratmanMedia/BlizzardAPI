@@ -23,9 +23,9 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 
             var assertions = new List<bool>
             {
-                realm.Id == 60,
-                realm.Name == "Stormrage",
-                realm.Slug == "stormrage"
+                realm.id == 60,
+                realm.name == "Stormrage",
+                realm.slug == "stormrage"
             };
             Assert.IsTrue(assertions.All(a => a));
         }

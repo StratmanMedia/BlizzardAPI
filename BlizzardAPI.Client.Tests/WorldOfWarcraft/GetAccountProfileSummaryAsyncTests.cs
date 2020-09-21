@@ -23,9 +23,9 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 
             var assertions = new List<bool>
             {
-                profile.Id == 523559,
-                profile.WowAccounts.Any(),
-                profile.WowAccounts.Any(a => a.Characters.Any())
+                profile.id == 523559,
+                profile.wow_accounts.Any(),
+                profile.wow_accounts.Any(a => a.characters.Any())
             };
             Assert.IsTrue(assertions.All(a => a));
         }

@@ -23,11 +23,10 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
 
             var assertions = new List<bool>
             {
-                guild.Id == 58564441,
-                guild.Name == "timeless endeavour",
-                guild.Slug == "timeless-endeavour",
-                guild.Realm.Slug == "stormrage",
-                guild.Faction == "ALLIANCE"
+                guild.id == 58564441,
+                guild.name == "timeless endeavour",
+                guild.realm.slug == "stormrage",
+                guild.faction.type == "ALLIANCE"
             };
             Assert.IsTrue(assertions.All(a => a));
         }

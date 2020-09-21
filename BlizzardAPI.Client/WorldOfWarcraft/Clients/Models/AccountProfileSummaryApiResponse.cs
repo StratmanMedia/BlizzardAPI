@@ -2,117 +2,117 @@
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Clients.Models
 {
-    internal class AccountProfileSummaryApiResponse
+    public class AccountProfileSummaryApiResponse
     {
-        internal class Self
+        public class Self
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class User
+        public class User
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Profile
+        public class Profile
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Links
+        public class Links
         {
-            internal Self self { get; set; }
-            internal User user { get; set; }
-            internal Profile profile { get; set; }
+            public Self self { get; set; }
+            public User user { get; set; }
+            public Profile profile { get; set; }
         }
 
-        internal class Character2
+        public class Character2
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class ProtectedCharacter
+        public class ProtectedCharacter
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Key
+        public class Key
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Realm
+        public class Realm
         {
-            internal Key key { get; set; }
-            internal string name { get; set; }
-            internal int id { get; set; }
-            internal string slug { get; set; }
+            public Key key { get; set; }
+            public string name { get; set; }
+            public int id { get; set; }
+            public string slug { get; set; }
         }
 
-        internal class Key2
+        public class Key2
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class PlayableClass
+        public class PlayableClass
         {
-            internal Key2 key { get; set; }
-            internal string name { get; set; }
-            internal int id { get; set; }
+            public Key2 key { get; set; }
+            public string name { get; set; }
+            public int id { get; set; }
         }
 
-        internal class Key3
+        public class Key3
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class PlayableRace
+        public class PlayableRace
         {
-            internal Key3 key { get; set; }
-            internal string name { get; set; }
-            internal int id { get; set; }
+            public Key3 key { get; set; }
+            public string name { get; set; }
+            public int id { get; set; }
         }
 
-        internal class Gender
+        public class Gender
         {
-            internal string type { get; set; }
-            internal string name { get; set; }
+            public string type { get; set; }
+            public string name { get; set; }
         }
 
-        internal class Faction
+        public class Faction
         {
-            internal string type { get; set; }
-            internal string name { get; set; }
+            public string type { get; set; }
+            public string name { get; set; }
         }
 
-        internal class Character
+        public class Character
         {
-            internal Character2 character { get; set; }
-            internal ProtectedCharacter protected_character { get; set; }
-            internal string name { get; set; }
-            internal int id { get; set; }
-            internal Realm realm { get; set; }
-            internal PlayableClass playable_class { get; set; }
-            internal PlayableRace playable_race { get; set; }
-            internal Gender gender { get; set; }
-            internal Faction faction { get; set; }
-            internal int level { get; set; }
+            public Character2 character { get; set; }
+            public ProtectedCharacter protected_character { get; set; }
+            public string name { get; set; }
+            public int id { get; set; }
+            public Realm realm { get; set; }
+            public PlayableClass playable_class { get; set; }
+            public PlayableRace playable_race { get; set; }
+            public Gender gender { get; set; }
+            public Faction faction { get; set; }
+            public int level { get; set; }
         }
 
-        internal class WowAccount
+        public class WowAccount
         {
-            internal int id { get; set; }
-            internal List<Character> characters { get; set; }
+            public int id { get; set; }
+            public List<Character> characters { get; set; }
         }
 
-        internal class Collections
+        public class Collections
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal Links _links { get; set; }
-        internal int id { get; set; }
-        internal List<WowAccount> wow_accounts { get; set; }
-        internal Collections collections { get; set; }
+        public Links _links { get; set; }
+        public int id { get; set; }
+        public List<WowAccount> wow_accounts { get; set; }
+        public Collections collections { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using BlizzardAPI.Client.WorldOfWarcraft.Clients.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Guilds.Models;
 using BlizzardAPI.Client.WorldOfWarcraft.Realms.Models;
-using BlizzardAPI.Client.WorldOfWarcraft.Shared.Extensions;
 
 namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
 {
@@ -73,7 +72,6 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Characters.Models
             {
                 Id = response.guild.id,
                 Name = response.guild.name,
-                Slug = response.guild.key.href.ParseGuildSlug(),
                 Realm = new Realm
                 {
                     Id = response.guild.realm.id,

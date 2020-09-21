@@ -57,7 +57,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         {
             private readonly InternalAccountProfileClient _internalClient = new InternalAccountProfileClient();
 
-            public async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
+            public async Task<AccountProfileSummaryApiResponse> GetAccountProfileSummaryAsync(string accessToken)
             {
                 return await _internalClient.GetAccountProfileSummaryAsync(accessToken);
             }
@@ -67,12 +67,12 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         {
             private readonly InternalCharacterClient _internalClient = new InternalCharacterClient();
 
-            public async Task<Character> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
+            public async Task<CharacterProfileSummaryApiResponse> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
             {
                 return await _internalClient.GetCharacterProfileSummaryAsync(realmSlug, characterName);
             }
 
-            public async Task<Character> GetProtectedCharacterProfileSummaryAsync(string realmId, string characterId, string accessToken)
+            public async Task<ProtectedCharacterProfileSummaryApiResponse> GetProtectedCharacterProfileSummaryAsync(int realmId, long characterId, string accessToken)
             {
                 return await _internalClient.GetProtectedCharacterProfileSummaryAsync(realmId, characterId, accessToken);
             }
@@ -82,7 +82,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
         {
             private readonly InternalGuildClient _internalClient = new InternalGuildClient();
 
-            public async Task<Guild> GetGuildAsync(string realmSlug, string guildSlug)
+            public async Task<GuildApiResponse> GetGuildAsync(string realmSlug, string guildSlug)
             {
                 return await _internalClient.GetGuildAsync(realmSlug, guildSlug);
             }
@@ -97,10 +97,10 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
                 _parent = parent;
             }
 
-            public async Task<Realm> GetRealmAsync(string realmSlug)
+            public async Task<RealmApiResponse> GetRealmAsync(string realmSlug)
             {
                 var uri = $"{_parent._apiBaseUrl}/data/wow/realm/{realmSlug}?namespace=dynamic-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
-                var realm = await _parent._restClient.GetAsync<Realm>(uri);
+                var realm = await _parent._restClient.GetAsync<RealmApiResponse>(uri);
                 return realm;
             }
         }

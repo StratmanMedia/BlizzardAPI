@@ -19,13 +19,13 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             _locale = ConfigurationService.GetLocale();
         }
 
-        internal async Task<AccountProfile> GetAccountProfileSummaryAsync(string accessToken)
+        internal async Task<AccountProfileSummaryApiResponse> GetAccountProfileSummaryAsync(string accessToken)
         {
             var uri = $"{_baseUrl}/profile/user/wow?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
             var restClient = new RestClient();
             var response = await restClient.GetAsync<AccountProfileSummaryApiResponse>(uri);
-            var profile = new AccountProfile(response);
-            return profile;
+            //var profile = new AccountProfile(response);
+            return response;
         }
     }
 }

@@ -1,152 +1,152 @@
 ﻿namespace BlizzardAPI.Client.WorldOfWarcraft.Clients.Models
 {
-    internal class GuildApiResponse
+    public class GuildApiResponse
     {
-        internal class Self
+        public class Self
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Links
+        public class Links
         {
-            internal Self self { get; set; }
+            public Self self { get; set; }
         }
 
-        internal class Faction
+        public class Faction
         {
-            internal string type { get; set; }
-            internal string name { get; set; }
+            public string type { get; set; }
+            public string name { get; set; }
         }
 
-        internal class Key
+        public class Key
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Realm
+        public class Realm
         {
-            internal Key key { get; set; }
-            internal string name { get; set; }
-            internal int id { get; set; }
-            internal string slug { get; set; }
+            public Key key { get; set; }
+            public string name { get; set; }
+            public int id { get; set; }
+            public string slug { get; set; }
         }
 
-        internal class Key2
+        public class Key2
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Media
+        public class Media
         {
-            internal Key2 key { get; set; }
-            internal int id { get; set; }
+            public Key2 key { get; set; }
+            public int id { get; set; }
         }
 
-        internal class Rgba
+        public class Rgba
         {
-            internal int r { get; set; }
-            internal int g { get; set; }
-            internal int b { get; set; }
-            internal double a { get; set; }
+            public int r { get; set; }
+            public int g { get; set; }
+            public int b { get; set; }
+            public double a { get; set; }
         }
 
-        internal class Color
+        public class Color
         {
-            internal int id { get; set; }
-            internal Rgba rgba { get; set; }
+            public int id { get; set; }
+            public Rgba rgba { get; set; }
         }
 
-        internal class Emblem
+        public class Emblem
         {
-            internal int id { get; set; }
-            internal Media media { get; set; }
-            internal Color color { get; set; }
+            public int id { get; set; }
+            public Media media { get; set; }
+            public Color color { get; set; }
         }
 
-        internal class Key3
+        public class Key3
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Media2
+        public class Media2
         {
-            internal Key3 key { get; set; }
-            internal int id { get; set; }
+            public Key3 key { get; set; }
+            public int id { get; set; }
         }
 
-        internal class Rgba2
+        public class Rgba2
         {
-            internal int r { get; set; }
-            internal int g { get; set; }
-            internal int b { get; set; }
-            internal double a { get; set; }
+            public int r { get; set; }
+            public int g { get; set; }
+            public int b { get; set; }
+            public double a { get; set; }
         }
 
-        internal class Color2
+        public class Color2
         {
-            internal int id { get; set; }
-            internal Rgba2 rgba { get; set; }
+            public int id { get; set; }
+            public Rgba2 rgba { get; set; }
         }
 
-        internal class Border
+        public class Border
         {
-            internal int id { get; set; }
-            internal Media2 media { get; set; }
-            internal Color2 color { get; set; }
+            public int id { get; set; }
+            public Media2 media { get; set; }
+            public Color2 color { get; set; }
         }
 
-        internal class Rgba3
+        public class Rgba3
         {
-            internal int r { get; set; }
-            internal int g { get; set; }
-            internal int b { get; set; }
-            internal double a { get; set; }
+            public int r { get; set; }
+            public int g { get; set; }
+            public int b { get; set; }
+            public double a { get; set; }
         }
 
-        internal class Color3
+        public class Color3
         {
-            internal int id { get; set; }
-            internal Rgba3 rgba { get; set; }
+            public int id { get; set; }
+            public Rgba3 rgba { get; set; }
         }
 
-        internal class Background
+        public class Background
         {
-            internal Color3 color { get; set; }
+            public Color3 color { get; set; }
         }
 
-        internal class Crest
+        public class Crest
         {
-            internal Emblem emblem { get; set; }
-            internal Border border { get; set; }
-            internal Background background { get; set; }
+            public Emblem emblem { get; set; }
+            public Border border { get; set; }
+            public Background background { get; set; }
         }
 
-        internal class Roster
+        public class Roster
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Achievements
+        public class Achievements
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal class Activity
+        public class Activity
         {
-            internal string href { get; set; }
+            public string href { get; set; }
         }
 
-        internal Links _links { get; set; }
-        internal int id { get; set; }
-        internal string name { get; set; }
-        internal Faction faction { get; set; }
-        internal int achievement_points { get; set; }
-        internal int member_count { get; set; }
-        internal Realm realm { get; set; }
-        internal Crest crest { get; set; }
-        internal Roster roster { get; set; }
-        internal Achievements achievements { get; set; }
-        internal long created_timestamp { get; set; }
-        internal Activity activity { get; set; }
+        public Links _links { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public Faction faction { get; set; }
+        public int achievement_points { get; set; }
+        public int member_count { get; set; }
+        public Realm realm { get; set; }
+        public Crest crest { get; set; }
+        public Roster roster { get; set; }
+        public Achievements achievements { get; set; }
+        public long created_timestamp { get; set; }
+        public Activity activity { get; set; }
     }
 }
