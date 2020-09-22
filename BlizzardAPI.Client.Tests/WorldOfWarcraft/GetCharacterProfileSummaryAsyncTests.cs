@@ -19,7 +19,7 @@ namespace BlizzardAPI.Client.Tests.WorldOfWarcraft
                 Region = "us",
                 Locale = "en_US"
             });
-            var character = wowClient.Characters.GetCharacterProfileSummaryAsync("stormrage", "maestero").GetAwaiter().GetResult();
+            var character = wowClient.Characters.GetCharacterProfileSummaryAsync("stormrage", "Maestero").GetAwaiter().GetResult();
 
             var assertions = new List<bool>
             {

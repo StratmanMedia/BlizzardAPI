@@ -20,7 +20,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 
         internal async Task<CharacterProfileSummaryApiResponse> GetCharacterProfileSummaryAsync(string realmSlug, string characterName)
         {
-            var uri = $"{_baseUrl}/profile/wow/character/{realmSlug}/{characterName}?namespace=profile-{_region}&locale={_locale}";
+            var uri = $"{_baseUrl}/profile/wow/character/{realmSlug}/{characterName.ToLower()}?namespace=profile-{_region}&locale={_locale}";
             var restClient = new RestClient();
             var response = await restClient.GetAsync<CharacterProfileSummaryApiResponse>(uri);
             return response;
