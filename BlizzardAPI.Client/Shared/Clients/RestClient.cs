@@ -28,9 +28,12 @@ namespace BlizzardAPI.Client.Shared.Clients
                 uri = $"{uri}&access_token={ConfigurationService.GetBattleNetToken().AccessToken}";
             }
             var response = await _httpClient.GetAsync(uri);
+            if (!response.IsSuccessStatusCode) return default;
+
             var json = await response.Content.ReadAsStringAsync();
             var model = JsonConvert.DeserializeObject<T>(json);
             return model;
+
         }
 
         internal async Task<JObject> GetAsync(string uri)
@@ -41,6 +44,8 @@ namespace BlizzardAPI.Client.Shared.Clients
                 uri = $"{uri}&access_token={ConfigurationService.GetBattleNetToken().AccessToken}";
             }
             var response = await _httpClient.GetAsync(uri);
+            if (!response.IsSuccessStatusCode) return default;
+
             var json = await response.Content.ReadAsStringAsync();
             var model = JObject.Parse(json);
             return model;

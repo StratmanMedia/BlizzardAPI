@@ -23,6 +23,8 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 
         internal async Task<GuildApiResponse> GetGuildAsync(string realmSlug, string guildSlug)
         {
+            if (realmSlug == null || guildSlug == null) return null;
+
             var uri = $"{_baseUrl}/data/wow/guild/{realmSlug}/{guildSlug}?namespace=profile-{_region}&locale={_locale}&access_token={_token.AccessToken}";
             var restClient = new RestClient();
             var response = await restClient.GetAsync<GuildApiResponse>(uri);
