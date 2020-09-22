@@ -99,6 +99,8 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 
             public async Task<RealmApiResponse> GetRealmAsync(string realmSlug)
             {
+                if (realmSlug == null) return null;
+
                 var uri = $"{_parent._apiBaseUrl}/data/wow/realm/{realmSlug}?namespace=dynamic-{_parent._clientSettings.Region}&locale={_parent._clientSettings.Locale}";
                 var realm = await _parent._restClient.GetAsync<RealmApiResponse>(uri);
                 return realm;

@@ -28,7 +28,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
 
         internal async Task<ProtectedCharacterProfileSummaryApiResponse> GetProtectedCharacterProfileSummaryAsync(int realmId, long characterId, string accessToken)
         {
-            var uri = $"{_baseUrl}/profile/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
+            var uri = $"{_baseUrl}/profile/user/wow/protected-character/{realmId}-{characterId}?namespace=profile-{_region}&locale={_locale}&access_token={accessToken}";
             var restClient = new RestClient();
             var character = await restClient.GetAsync<ProtectedCharacterProfileSummaryApiResponse>(uri);
             return character;

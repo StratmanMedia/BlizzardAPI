@@ -57,8 +57,8 @@
             public long total_gold_lost { get; set; }
             public int total_item_value_gained { get; set; }
             public int level_number_deaths { get; set; }
-            public int level_gold_gained { get; set; }
-            public int level_gold_lost { get; set; }
+            public long level_gold_gained { get; set; }
+            public long level_gold_lost { get; set; }
             public int level_item_value_gained { get; set; }
         }
 
@@ -109,7 +109,7 @@
         public Links _links { get; set; }
         public int id { get; set; }
         public string name { get; set; }
-        public int money { get; set; }
+        public long money { get; set; }
         public Character character { get; set; }
         public ProtectedStats protected_stats { get; set; }
         public Position position { get; set; }
