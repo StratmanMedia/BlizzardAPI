@@ -101,7 +101,7 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients.Models
 
         public class WowAccount
         {
-            public int id { get; set; }
+            public long id { get; set; }
             public List<Character> characters { get; set; }
         }
 
