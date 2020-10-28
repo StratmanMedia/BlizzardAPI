@@ -33,5 +33,13 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             var character = await restClient.GetAsync<ProtectedCharacterProfileSummaryApiResponse>(uri);
             return character;
         }
+
+        internal async Task<CharacterMediaApiReponse> GetCharacterMediaAsync(string realmSlug, string characterName)
+        {
+            var uri = $"{_baseUrl}/profile/wow/character/{realmSlug}/{characterName.ToLower()}/character-media?namespace=profile-{_region}&locale={_locale}";
+            var restClient = new RestClient();
+            var response = await restClient.GetAsync<CharacterMediaApiReponse>(uri);
+            return response;
+        }
     }
 }

@@ -76,6 +76,11 @@ namespace BlizzardAPI.Client.WorldOfWarcraft.Clients
             {
                 return await _internalClient.GetProtectedCharacterProfileSummaryAsync(realmId, characterId, accessToken);
             }
+
+            public async Task<CharacterMediaApiReponse> GetCharacterMedia(string realmSlug, string characterName)
+            {
+                return await _internalClient.GetCharacterMediaAsync(realmSlug, characterName);
+            }
         }
 
         public class GuildsClient
